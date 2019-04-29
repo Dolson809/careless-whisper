@@ -1,45 +1,73 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  app.get("/api/authors", function(req, res) {
-    // Here we add an "include" property to our options in our findAll query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Post
-    db.Author.findAll({
-      include: [db.Post]
-    }).then(function(dbAuthor) {
-      res.json(dbAuthor);
-    });
+
+  app.get("/api/posts/", function(req, res) {
+    db.Blog.findAll({})
+      .then(function(dbBlog) {
+        res.json(dbBlog);
+      });
   });
 
-  app.get("/api/authors/:id", function(req, res) {
-    // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Post
-    db.Author.findOne({
+  // Get route for returning posts of a specific category
+  app.get("/api/posts/category/:category", function(req, res) {
+    db.Blog.findAll({
       where: {
-        id: req.params.id
-      },
-      include: [db.Post]
-    }).then(function(dbAuthor) {
-      res.json(dbAuthor);
-    });
+        category: req.params.category
+      }
+    })
+      .then(function(dbBlog) {
+        res.json(dbBlog);
+      });
   });
 
-  app.post("/api/authors", function(req, res) {
-    db.Author.create(req.body).then(function(dbAuthor) {
-      res.json(dbAuthor);
-    });
-  });
-
-  app.delete("/api/authors/:id", function(req, res) {
-    db.Author.destroy({
+  // Get route for retrieving a single post
+  app.get("/api/posts/:id", function(req, res) {
+    db.Blog.findOne({
       where: {
         id: req.params.id
       }
-    }).then(function(dbAuthor) {
-      res.json(dbAuthor);
-    });
+    })
+      .then(function(dbBlog) {
+        res.json(dbBlog);
+      });
   });
 
+  // POST route for saving a new post
+  app.post("/api/posts", function(req, res) {
+    console.log(req.body);
+    db.Blog.create({
+      title: req.body.title,
+      body: req.body.body,
+      category: req.body.category
+    })
+      .then(function(dbBlog) {
+        res.json(dbBlog);
+      });
+  });
+
+  // DELETE route for deleting posts
+  app.delete("/api/posts/:id", function(req, res) {
+    db.Blog.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(function(dbBlog) {
+        res.json(dbBlog);
+      });
+  });
+
+  // PUT route for updating posts
+  app.put("/api/posts", function(req, res) {
+    db.Blog.update(req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      })
+      .then(function(dbBlog) {
+        res.json(dbBlog);
+      });
+  });
 };
