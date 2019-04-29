@@ -1,0 +1,27 @@
+{
+  "name": "careless-whisper",
+  "version": "1.0.0",
+  "description": "\"Project 2 named careless whisper lol\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dolson809/careless-whisper.git"
+  },
+  "author": "Daniel Olson, Andrew Magee, Jonathan Viera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dolson809/careless-whisper/issues"
+  },
+  "homepage": "https://github.com/Dolson809/careless-whisper#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.7.5"
+  }
+}
