@@ -18,10 +18,6 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         defaultValue: "Personal"
       },
-      date: {
-        type: DataTypes.DATE,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
-      }
     });
     return Blog;
   };
