@@ -4,23 +4,19 @@ import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-// import IconButton from '@material-ui/core/IconButton';
-// import SearchIcon from '@material-ui/icons/Search';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-// import CardMedia from '@material-ui/core/CardMedia';
-// import Hidden from '@material-ui/core/Hidden';
-// import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
 import Markdown from '../../Components/Markdown';
 import post1 from './blog-post.1.md';
 import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
-
 import styles from './Main.styles.js';
+import Dialog from '../../Components/Dialog';
+import CreateWhisper from '../../Components/Whispers/Create'
+import Divider from '@material-ui/core/Divider';
 
 const sections = [
   'Personal',
@@ -60,6 +56,7 @@ const archives = [
   'April 2019',
 ];
 
+
 // const social = ['GitHub', 'Twitter', 'Facebook'];
 
 function Blog(props) {
@@ -70,22 +67,9 @@ function Blog(props) {
       <CssBaseline />
       <div className={classes.layout}>
         <Toolbar className={classes.toolbarMain}>
-          <Button size="small">Create a Whisper</Button>
-          <Typography
-            component="h2"
-            variant="h5"
-            color="inherit"
-            align="center"
-            noWrap
-            className={classes.toolbarTitle}
-          >
-          </Typography>
-          {/* <IconButton>
-            <SearchIcon />
-          </IconButton> */}
-          {/* <Button variant="outlined" size="small">
-            Sign up
-          </Button> */}
+          <Dialog text="Create a Whisper" >
+            <CreateWhisper />
+          </Dialog>
         </Toolbar>
         <Toolbar variant="dense" className={classes.toolbarSecondary}>
           {sections.map(section => (
@@ -180,5 +164,6 @@ function Blog(props) {
 Blog.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
 
 export default withStyles(styles)(Blog);
