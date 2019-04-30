@@ -8,8 +8,3 @@ export default () => (
     <Main></Main>
   </React.Fragment>
 )
-
-// router.get("/api/saved" (req, res) => {
-//   const id = req.params.id
-//   models.Blogs.
-// })
