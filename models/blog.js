@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Post = sequelize.define("Post", {
+    var Blog = sequelize.define("Blog", {
       title: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -18,11 +18,8 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         defaultValue: "Personal"
       },
-      date: {
-        type: DataTypes.DATE,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
-      }
+      myDate: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }
     });
-    return Post;
+    return Blog;
   };
   
