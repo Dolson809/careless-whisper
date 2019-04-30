@@ -51,11 +51,12 @@ class CreateWhisper extends React.Component {
         required
         id="filled-required"
         label="Title"
-        defaultValue="Enter title"
+        defaultValue=""
         className={classes.textField}
         margin="normal"
         variant="filled"
         />
+        
       <TextField
       id="filled-select-category-native"
       select
@@ -79,11 +80,12 @@ class CreateWhisper extends React.Component {
         </option>
       ))}
     </TextField>
+
      <TextField
      id="filled-multiline-static"
      label="Whisper"
      multiline
-     rows="4"
+     rowsMax={ Infinity }
      defaultValue=""
      className={classes.textField}
      margin="normal"
