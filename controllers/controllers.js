@@ -14,7 +14,7 @@ var db = require('../models');
         });
  });
 
- router.post("/api/posts", function(req, res) {
+ router.post("/api/post", function(req, res) {
     console.log(req.body);
     db.Blog.create({
       title: req.body.title,
