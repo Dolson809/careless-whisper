@@ -34,10 +34,14 @@ class FullScreenDialog extends React.Component {
   }
 
 
-  handleClose = () => {
+  handleClose = (onClose) => () => {
+    if (onClose) {
+      if (onClose()) {
+        return this.setState({ open: false });
+      }
+      return;
+    }
     this.setState({ open: false });
-    console.log('clicked');
-    
   };
 
   render() {
@@ -55,12 +59,12 @@ class FullScreenDialog extends React.Component {
         >
         <AppBar className={classes.appBar}>
           <Toolbar>
-            <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
+            <IconButton color="inherit" onClick={this.handleClose()} aria-label="Close">
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.flex}>
             </Typography>
-            <Button color="inherit" onClick={this.handleClose} id="save-button">
+            <Button color="inherit" onClick={this.handleClose(this.props.handleSave)}>
               save
             </Button>
           </Toolbar>
