@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import styles from './CreateWhisper.styles.js';
+import Axios from 'axios';
 
 const category = [
     {
@@ -37,11 +38,16 @@ class CreateWhisper extends React.Component {
         category: 'Personal'
     };
 
-    handleChange = name => event => {
-        this.setState({
-            [name]: event.target.value,
-        });
-    };
+  handleChange = name => event => {
+    Axios.post("/api/post").then(({ data }) => {
+      this.setState({
+        title: data.blogs.title,
+        category: data.blogs.category,
+        body: data.blogs.body
+      })
+      console.log(data);
+    });
+  };
 
   render() {
     const { classes } = this.props;
