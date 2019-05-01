@@ -13,6 +13,8 @@ import Dialog from '../../Components/Dialog';
 import CreateWhisper from '../../Components/Whispers/Create';
 import { Link } from 'react-router-dom';
 import axios  from "axios";
+
+
 const sections = [
   'Personal',
   'Sports',
@@ -33,6 +35,9 @@ class Blog extends React.Component {
   }
 
   handleCreateWhisperSave = () => {
+      if (!this.state.title.trim() && !this.state.body.trim()) {
+          return false;
+      }
     const newPost = {
         title: this.state.title,
         body: this.state.body,
@@ -47,7 +52,7 @@ class Blog extends React.Component {
         })
         console.log(data);
       });
-    
+    return true;
   };
 handleCreateWhisperChange = (name) => (event) => {
     this.setState({
@@ -110,8 +115,7 @@ handleClicks = () => {
                     Careless-Whisper
                   </Typography>
                   <Typography variant="h5" color="inherit" paragraph>
-                    Multiple lines of text that form the lede, informing new readers quickly and
-                    efficiently about what&apos;s most interesting in this post&apos;s contents…
+                    
                   </Typography>
                 </div>
               </Grid>
