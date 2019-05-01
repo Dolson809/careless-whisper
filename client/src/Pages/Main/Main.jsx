@@ -173,7 +173,7 @@ handleClicks = () => {
       <CssBaseline />
       <div className={classes.layout}>
          <Toolbar className={classes.toolbarMain}>
-           <Dialog text="Create a Whisper" >
+         <Dialog text="Create a Whisper" buttonId="create-whisper">
              <CreateWhisper />
            </Dialog>
          </Toolbar>

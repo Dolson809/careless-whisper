@@ -7,7 +7,7 @@ import styles from './CreateWhisper.styles.js';
 
 const category = [
     {
-        value: 'Personal',
+        value: 'personal',
         label: 'Personal',
     },
     {
