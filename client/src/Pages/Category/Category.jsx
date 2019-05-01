@@ -134,9 +134,6 @@ handleClicks = () => {
                       <Typography variant="subtitle1" paragraph>
                         {post.body}
                       </Typography>
-                      <Button color="secondary" onClick={this.handleClicks} className={classes.button}>
-                        Continue reading
-                      </Button>
                     </CardContent>
                   </div>
                 </Card>
