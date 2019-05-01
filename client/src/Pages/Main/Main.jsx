@@ -226,7 +226,7 @@ handleClicks = () => {
                       </Button>
                     </CardContent>
                   </div>
-                </Grid>
+                </Card>
               </Grid>
             ))}
           </Grid>
