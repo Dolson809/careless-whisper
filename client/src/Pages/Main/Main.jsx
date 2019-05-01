@@ -12,6 +12,7 @@ import styles from './Main.styles.js';
 import Dialog from '../../Components/Dialog';
 import CreateWhisper from '../../Components/Whispers/Create'
 import axios  from "axios";
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 
@@ -88,13 +89,13 @@ class Blog extends React.Component {
          </Toolbar>
          <Toolbar variant="dense" className={classes.toolbarSecondary}>
            {sections.map(section => (
-           <Link to={'/category/' + section.toLowerCase()}>
-           <Button color="secondary" onClick={this.handleClicks} className={classes.button} key={section}>
-             {section}
-           </Button>
-           </Link>
-         ))}
-       </Toolbar>
+           <Link to={'/category/' + section.toLowerCase()} key={section}>
+            <Button color="secondary" className={classes.button}>
+              {section}
+            </Button>
+            </Link>
+          ))}
+        </Toolbar>
         <main>
           {/* Main featured post Title starts here*/}
           <Paper className={classes.mainFeaturedPost}>
@@ -122,7 +123,7 @@ class Blog extends React.Component {
                         {post.title}
                       </Typography>
                       <Typography variant="subtitle1" color="textSecondary">
-                        {post.updatedAt}
+                        {moment(post.createdAt).format('MM/YY/DD hh:mm')}
                       </Typography>
                       <Typography variant="subtitle1" paragraph>
                         {post.body}
