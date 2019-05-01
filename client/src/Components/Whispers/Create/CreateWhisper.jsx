@@ -38,13 +38,16 @@ class CreateWhisper extends React.Component {
         category: 'Personal'
     };
 
-    handleChange = name => event => {
-      Axios.post("/api/post").then(({data})=> {
-        this.setState({
-          blog: data.title
+  handleChange = name => event => {
+    Axios.post("/api/post").then(({ data }) => {
+      this.setState({
+        title: data.blogs.title,
+        category: data.blogs.category,
+        body: data.blogs.body
       })
-        });
-    };
+      console.log(data);
+    });
+  };
 
   render() {
     const { classes } = this.props;

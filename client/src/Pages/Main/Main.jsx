@@ -52,6 +52,7 @@ componentDidMount = () => {
     })
   })
 }
+
 handleClicks = () => {
   console.log("I've been clicked");
 };

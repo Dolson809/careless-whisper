@@ -16,6 +16,22 @@ var db = require('../models');
         });
  });
 
+ router.get("/api/saved/:category", (req,res)=>{
+   db.Blog.findAll({
+     where: {
+       category: req.params.category
+     }
+   })
+       // .sort({date: -1})
+       .then(blogs => {
+         if (blogs) {
+           res.json({ success: true, blogs });
+         } else {
+           res.status(404).json({ success: false, error: "blogs not found." });
+         }
+       });
+});
+
  router.post("/api/post", function(req, res) {
     console.log(req.body);
     db.Blog.create({
