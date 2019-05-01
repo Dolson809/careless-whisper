@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Main from './Pages/Main'
 // import { REPL_MODE_SLOPPY } from 'repl';
 

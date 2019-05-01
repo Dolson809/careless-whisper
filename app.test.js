@@ -14,9 +14,15 @@ describe("Carelesswhisper", function () {
             .click("#create-whisper")
             .wait("#filled-required")
             .type("#filled-required", "A Careless Whisper")
-            // .select("filled-select-category-native")
+            .wait(1000)
+            .select("#filled-select-category-native", "Miscellaneous")
+            .wait(1000)
             .type("#filled-multiline-static", "And I'm never gonna dance again. Guilty feet have got no rhythm.")
             .wait(2000)
+            .click("#save-button")
+            .wait(3000)
+            .click("#media")
+            .wait(5000)
             .end()
             .then(function (result) {
                 console.log(result);
@@ -28,12 +34,7 @@ describe("Carelesswhisper", function () {
             });
     }, 30000);
 
-    // it("save whisper, then open politics category", function (done){
-    //     nightmare.goto("http://localhost:3000")
-    //     .wait(1000)
-    //     .click("#????")
-    // })
-
+  
 
 });
 
