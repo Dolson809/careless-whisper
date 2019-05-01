@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import Axios  from "axios";
 import styles from './Dialog.styles.js';
 import axios from "axios";
 function Transition(props) {
@@ -19,6 +18,8 @@ function Transition(props) {
 class FullScreenDialog extends React.Component {
   state = {
     open: false,
+    title: '',
+    body: ''
   };
 
   handleClickOpen = () => {
@@ -26,21 +27,19 @@ class FullScreenDialog extends React.Component {
     console.log('clicked');
   };
 
+  handleChange = name => (event) => {
+    this.setState({
+      [name]: event.target.value
+    })
+  }
+
+
   handleClose = () => {
       axios.post("/api/post").then(({data})=> {
         this.setState({
           blog: data.title
       })
         });
-    
-      Axios.post("/api/post").then(({ data }) => {
-        this.setState({
-          title: data.blogs.title,
-          category: data.blogs.category,
-          body: data.blogs.body
-        })
-        console.log(data);
-      });
     
   };
 
@@ -69,7 +68,7 @@ class FullScreenDialog extends React.Component {
             <Typography variant="h6" color="inherit" className={classes.flex}>
               
             </Typography>
-            <Button color="inherit" onClick={this.handleClose}>
+            <Button color="inherit" onClick={this.props.handleSave}>
               save
             </Button>
           </Toolbar>
