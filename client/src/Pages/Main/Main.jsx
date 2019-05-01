@@ -9,14 +9,11 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Markdown from '../../Components/Markdown';
-import post1 from './blog-post.1.md';
-import post2 from './blog-post.2.md';
-import post3 from './blog-post.3.md';
 import styles from './Main.styles.js';
 import Dialog from '../../Components/Dialog';
-import CreateWhisper from '../../Components/Whispers/Create'
-import Divider from '@material-ui/core/Divider';
+import CreateWhisper from '../../Components/Whispers/Create';
+import { Link } from 'react-router-dom';
+
 
 const sections = [
   'Personal',
@@ -42,25 +39,17 @@ const featuredPosts = [
   },
 ];
 
-const posts = [post1, post2, post3];
 
-const archives = [
-  'December 2019',
-  'November 2019',
-  'October 2019',
-  'September 2019',
-  'August 2019',
-  'July 2019',
-  'June 2019',
-  'May 2019',
-  'April 2019',
-];
 
 
 // const social = ['GitHub', 'Twitter', 'Facebook'];
 
 function Blog(props) {
   const { classes } = props;
+
+  let handleClicks = () => {
+    console.log("I've been clicked");
+  };
 
   // Make a Post!!!!-------------------------------------------
   return (
@@ -74,9 +63,11 @@ function Blog(props) {
         </Toolbar>
         <Toolbar variant="dense" className={classes.toolbarSecondary}>
           {sections.map(section => (
-            <Button color="secondary" className={classes.button} noWrap key={section}>
+            <Link to={'/category/' + section.toLowerCase()}>
+            <Button color="secondary" onClick={handleClicks} className={classes.button} key={section}>
               {section}
             </Button>
+            </Link>
           ))}
         </Toolbar>
         <main>
@@ -114,7 +105,7 @@ function Blog(props) {
                       <Typography variant="subtitle1" paragraph>
                         {post.description}
                       </Typography>
-                      <Button color="secondary" className={classes.button}>
+                      <Button color="secondary" onClick={handleClicks} className={classes.button}>
                         Continue reading
                       </Button>
                     </CardContent>
@@ -127,24 +118,18 @@ function Blog(props) {
           <Grid container spacing={40} className={classes.mainGrid}>
             {/* Main content */}
             <Grid item xs={12} md={8}>
-              <Divider />
+            {/* Use this posts example below to see how to LOOP */}
+              {/* <Divider />
               {posts.map(post => (
                 <Markdown className={classes.markdown} key={post.substring(0, 40)}>
                   {post}
                 </Markdown>
-              ))}
-            </Grid>
+              ))} */}
+            </Grid> 
             {/* End main content */}
             {/* Sidebar */}
-            <Grid item xs={12} md={4}>
-              <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-                Archives
-              </Typography>
-              {archives.map(archive => (
-                <Button color="secondary" className={classes.button} key={archive}>{archive}</Button>
-              ))}
+            
              {/* End sidebar */}
-            </Grid>
           </Grid>
         </main>
       </div>

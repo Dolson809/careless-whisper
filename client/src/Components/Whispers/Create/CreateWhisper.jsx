@@ -85,9 +85,11 @@ class CreateWhisper extends React.Component {
      id="filled-multiline-static"
      label="Whisper"
      multiline
+     rows={25}
      rowsMax={ Infinity }
      defaultValue=""
      className={classes.textField}
+     fullWidth
      margin="normal"
      variant="filled"
    />
