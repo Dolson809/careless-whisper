@@ -8,12 +8,13 @@ var nightmare = Nightmare({ show: true });
 
 describe("Carelesswhisper", function () {
 
-    it("open create-a-whisper and type whisper title and body", function (done) {
+    it("open create-a-whisper, then type whisper title and body", function (done) {
         nightmare.goto("http://localhost:3000")
-            .wait(1000)
+            .wait(2000)
             .click("#create-whisper")
             .wait("#filled-required")
             .type("#filled-required", "A Careless Whisper")
+            // .select("filled-select-category-native")
             .type("#filled-multiline-static", "And I'm never gonna dance again. Guilty feet have got no rhythm.")
             .wait(2000)
             .end()
@@ -26,5 +27,13 @@ describe("Carelesswhisper", function () {
                 done();
             });
     }, 30000);
+
+    // it("save whisper, then open politics category", function (done){
+    //     nightmare.goto("http://localhost:3000")
+    //     .wait(1000)
+    //     .click("#????")
+    // })
+
+
 });
 

@@ -6,10 +6,12 @@ var db = require('../models');
 
   router.get("/api/saved", (req,res)=>{
     db.Blog.findAll({})
-        .sort({date: -1})
-        .then(blogs => res.json(blogs));
-        if (blogs) res.json({ success: true, blogs });
-		else res.status(400).json({ success: false, error: "blogs not found." });
+        // .sort({date: -1})
+        .then(blogs => {
+          if (blogs) res.json({ success: true, blogs });
+      else res.status(404).json({ success: false, error: "blogs not found." });
+          res.json(blogs)
+        });
  });
 
  router.post("/api/posts", function(req, res) {
