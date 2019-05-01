@@ -46,7 +46,6 @@ var db = require('../models');
         res.json(dbPost);
       });
   });
-};
  
 
 module.exports = router;
