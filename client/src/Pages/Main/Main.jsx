@@ -24,21 +24,6 @@ const sections = [
   'Miscellaneous',
 ];
 
-// const featuredPosts = [
-//   {
-//     title: 'Featured post',
-//     date: 'Nov 12',
-//     description:
-//       'This is a wider card with supporting text below as a natural lead-in to additional content.',
-//   },
-//   {
-//     title: 'Post title',
-//     date: 'Nov 11',
-//     description:
-//       'This is a wider card with supporting text below as a natural lead-in to additional content.',
-//   },
-// ]
-
 class Blog extends React.Component {
   state= {
     blog: [],
@@ -49,13 +34,16 @@ class Blog extends React.Component {
   }
 
   handleCreateWhisperSave = () => {
+    if (!this.state.title.trim() && !this.state.body.trim()) {
+      return false;
+    }
     const newPost = {
       title: this.state.title,
        body: this.state.body,
        category: this.state.categort
     }
 
-    axios.post('/api/psot', newPost).then(({ data }) => {
+    axios.post('/api/post', newPost).then(({ data }) => {
       this.setState({
         title: '',
         body: '',
@@ -68,26 +56,16 @@ class Blog extends React.Component {
   handleCreateWhisperChange = (name) => (event) => {
     this.setState({
       [name]: event.target.value
-    })
-  }
+    });
+    return true;
+  };
 
   componentDidMount = () => {
-    axios.get('/api/saved' + this.props.match.params.category).then(({ data }) => {
+    axios.get('/api/saved').then(({ data }) => {
       this.setState({
         blog: data.blogs
       })
     })
-  }
-
-  componentDidUpdate = (prevProps, prevState) => {
-    if (prevProps.match.params.category !== this.props.match.params.category) {
-      this.setState({blog: []});
-    axios.get('/api/saved/' + this.props.match.params.category).then(({data}) => {
-      this.setState({
-        blog: data.blogs
-      })
-    })
-    }
   }
 
   handleClicks = () => {
