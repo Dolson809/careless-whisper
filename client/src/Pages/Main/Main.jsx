@@ -42,20 +42,57 @@ const sections = [
 class Blog extends React.Component {
   state= {
     blog: [],
-
+    title: '',
+    body: '',
+    category: '',
     active: "All"
   }
-componentDidMount = () => {
-  axios.get('/api/saved').then(({data}) => {
-    this.setState({
-      blog: data.blogs
-    })
-  })
-}
 
-handleClicks = () => {
-  console.log("I've been clicked");
-};
+  handleCreateWhisperSave = () => {
+    const newPost = {
+      title: this.state.title,
+       body: this.state.body,
+       category: this.state.categort
+    }
+
+    axios.post('/api/psot', newPost).then(({ data }) => {
+      this.setState({
+        title: '',
+        body: '',
+        category: 'personal'
+      })
+      console.log(data);
+    });
+  };
+
+  handleCreateWhisperChange = (name) => (event) => {
+    this.setState({
+      [name]: event.target.value
+    })
+  }
+
+  componentDidMount = () => {
+    axios.get('/api/saved' + this.props.match.params.category).then(({ data }) => {
+      this.setState({
+        blog: data.blogs
+      })
+    })
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevProps.match.params.category !== this.props.match.params.category) {
+      this.setState({blog: []});
+    axios.get('/api/saved/' + this.props.match.params.category).then(({data}) => {
+      this.setState({
+        blog: data.blogs
+      })
+    })
+    }
+  }
+
+  handleClicks = () => {
+    console.log("I've been clicked");
+  };
 
   render = () => {
     const { classes } = this.props;
@@ -63,13 +100,16 @@ handleClicks = () => {
     <React.Fragment>
       <CssBaseline />
       <div className={classes.layout}>
-      <Toolbar className={classes.toolbarMain}>
-         <Dialog text="Create a Whisper" buttonId="create-whisper" >
-           <CreateWhisper />
-         </Dialog>
-       </Toolbar>
-       <Toolbar variant="dense" className={classes.toolbarSecondary}>
-         {sections.map(section => (
+         <Toolbar className={classes.toolbarMain}>
+           <Dialog text="Create a Whisper" buttonId='create-whisper' handleSave={this.handleCreateWhisperSave} >
+             <CreateWhisper handleChange={this.handleCreateWhisperChange}
+              title={this.state.title}
+              body={this.state.body}
+              category={this.state.category} />
+           </Dialog>
+         </Toolbar>
+         <Toolbar variant="dense" className={classes.toolbarSecondary}>
+           {sections.map(section => (
            <Link to={'/category/' + section.toLowerCase()}>
            <Button color="secondary" onClick={this.handleClicks} className={classes.button} key={section}>
              {section}
@@ -87,10 +127,7 @@ handleClicks = () => {
                   <Typography component="h1" variant="h3" color="inherit" gutterBottom>
                     Careless-Whisper
                   </Typography>
-                  <Typography variant="h5" color="inherit" paragraph>
-                    Multiple lines of text that form the lede, informing new readers quickly and
-                    efficiently about what&apos;s most interesting in this post&apos;s contents…
-                  </Typography>
+                 
                 </div>
               </Grid>
             </Grid>
@@ -112,9 +149,6 @@ handleClicks = () => {
                       <Typography variant="subtitle1" paragraph>
                         {post.body}
                       </Typography>
-                      <Button color="secondary" onClick={this.handleClicks} className={classes.button}>
-                        Continue reading
-                      </Button>
                     </CardContent>
                   </div>
                 </Card>
