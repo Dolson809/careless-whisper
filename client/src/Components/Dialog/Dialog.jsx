@@ -19,6 +19,8 @@ function Transition(props) {
 class FullScreenDialog extends React.Component {
   state = {
     open: false,
+    title: '',
+    body: ''
   };
 
   handleClickOpen = () => {
@@ -26,18 +28,16 @@ class FullScreenDialog extends React.Component {
     console.log('clicked');
   };
 
+  handleChange = name => (event) => {
+    this.setState({
+      [name]: event.target.value
+    })
+  }
+
+
   handleClose = () => {
     this.setState({ open: false });
     console.log('clicked');
-    
-      Axios.post("/api/post").then(({ data }) => {
-        this.setState({
-          title: data.blogs.title,
-          category: data.blogs.category,
-          body: data.blogs.body
-        })
-        console.log(data);
-      });
     
   };
 
@@ -62,7 +62,7 @@ class FullScreenDialog extends React.Component {
             <Typography variant="h6" color="inherit" className={classes.flex}>
               
             </Typography>
-            <Button color="inherit" onClick={this.handleClose}>
+            <Button color="inherit" onClick={this.props.handleSave}>
               save
             </Button>
           </Toolbar>

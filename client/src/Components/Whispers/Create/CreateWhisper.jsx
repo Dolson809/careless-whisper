@@ -7,47 +7,43 @@ import Axios from 'axios';
 
 const category = [
     {
-        value: 'Personal',
+        value: 'personal',
         label: 'Personal'
     },
     {
-        value: 'Sports',
+        value: 'sports',
         label: 'Sports'
     },
     {
-        value: 'Politics',
+        value: 'politics',
         label: 'Politics'
     },
     {
-        value: 'Fashion',
+        value: 'fashion',
         label: 'Fashion'
     },
     {
-        value: 'Media',
+        value: 'media',
         label: 'Media'
     },
     {
-        value: 'Miscellaneous',
+        value: 'miscellaneous',
         label: 'Miscellaneous'
     }
 ];
 
 class CreateWhisper extends React.Component {
-    state = {
-        name: "",
-        category: 'Personal'
-    };
 
-  handleChange = name => event => {
-    Axios.post("/api/post").then(({ data }) => {
-      this.setState({
-        title: data.blogs.title,
-        category: data.blogs.category,
-        body: data.blogs.body
-      })
-      console.log(data);
-    });
-  };
+  // handleChange = name => event => {
+  //   Axios.post("/api/post").then(({ data }) => {
+  //     this.setState({
+  //       title: data.blogs.title,
+  //       category: data.blogs.category,
+  //       body: data.blogs.body
+  //     })
+  //     console.log(data);
+  //   });
+  // };
 
   render() {
     const { classes } = this.props;
@@ -57,8 +53,9 @@ class CreateWhisper extends React.Component {
         required
         id="filled-required"
         label="Title"
-        defaultValue=""
         className={classes.textField}
+        onChange={this.props.handleChange('title')}
+        value={this.props.title}
         margin="normal"
         variant="filled"
         />
@@ -68,8 +65,8 @@ class CreateWhisper extends React.Component {
       select
       label="Native select"
       className={classes.textField}
-      value={this.state.category}
-      onChange={this.handleChange('category')}
+      value={this.props.category}
+      onChange={this.props.handleChange('category')}
       SelectProps={{
         native: true,
         MenuProps: {
@@ -93,9 +90,10 @@ class CreateWhisper extends React.Component {
      multiline
      rows={25}
      rowsMax={ Infinity }
-     defaultValue=""
      className={classes.textField}
      fullWidth
+     value={this.props.body}
+     onChange={this.props.handleChange('body')}
      margin="normal"
      variant="filled"
    />

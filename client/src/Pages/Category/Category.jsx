@@ -26,10 +26,34 @@ const sections = [
 class Blog extends React.Component {
   state= {
     blog: [],
-
+    title: '',
+    body: '',
+    category: 'personal',
     active: "All"
   }
 
+  handleCreateWhisperSave = () => {
+    const newPost = {
+        title: this.state.title,
+        body: this.state.body,
+        category: this.state.category
+    }
+    
+      axios.post("/api/post", newPost).then(({ data }) => {
+        this.setState({
+            title: '',
+            body: '',
+            category: 'personal'
+        })
+        console.log(data);
+      });
+    
+  };
+handleCreateWhisperChange = (name) => (event) => {
+    this.setState({
+        [name]: event.target.value
+    })
+}
 componentDidMount = () => {
   axios.get('/api/saved/' + this.props.match.params.category).then(({data}) => {
     this.setState({
@@ -59,8 +83,11 @@ handleClicks = () => {
       <CssBaseline />
       <div className={classes.layout}>
         <Toolbar className={classes.toolbarMain}>
-          <Dialog text="Create a Whisper" buttonId="create-whisper" >
-            <CreateWhisper />
+          <Dialog text="Create a Whisper" buttonId="create-whisper" handleSave={this.handleCreateWhisperSave} >
+            <CreateWhisper handleChange={this.handleCreateWhisperChange} 
+                title={this.state.title}  
+                body={this.state.body}  
+                category={this.state.category} />
           </Dialog>
         </Toolbar>
         <Toolbar variant="dense" className={classes.toolbarSecondary}>
