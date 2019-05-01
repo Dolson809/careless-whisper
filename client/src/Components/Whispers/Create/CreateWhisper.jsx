@@ -51,7 +51,8 @@ class CreateWhisper extends React.Component {
         required
         id="filled-required"
         label="Title"
-        defaultValue="Enter title"
+        // defaultValue="Enter title"
+        placeholder="Enter Title"
         className={classes.textField}
         margin="normal"
         variant="filled"
