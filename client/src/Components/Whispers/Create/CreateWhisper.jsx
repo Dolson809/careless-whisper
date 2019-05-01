@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import styles from './CreateWhisper.styles.js';
-import Axios from 'axios';
+
 
 const category = [
     {
