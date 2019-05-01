@@ -97,8 +97,8 @@ handleClicks = () => {
         </Toolbar>
         <Toolbar variant="dense" className={classes.toolbarSecondary}>
           {sections.map(section => (
-            <Link to={'/category/' + section.toLowerCase()}>
-            <Button color="secondary" onClick={this.handleClicks} className={classes.button} key={section}>
+            <Link to={'/category/' + section.toLowerCase()} key={section}>
+            <Button color="secondary" onClick={this.handleClicks} className={classes.button}>
               {section}
             </Button>
             </Link>
