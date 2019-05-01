@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import styles from './Dialog.styles.js';
-
+import axios from "axios";
 function Transition(props) {
   return <Slide direction="down" {...props} />;
 }
@@ -26,16 +26,23 @@ class FullScreenDialog extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
-    console.log('clicked');
+      axios.post("/api/post").then(({data})=> {
+        this.setState({
+          blog: data.title
+      })
+        });
     
   };
+
+  handleClose = () => {
+    console.log("submited blog")
+  }
 
   render() {
     const { classes } = this.props;
     return (
       <div>
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+        <Button id={this.props.buttonId} variant="outlined" color="primary" onClick={this.handleClickOpen}>
           {this.props.text}
         </Button>
         <Dialog

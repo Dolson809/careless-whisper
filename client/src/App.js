@@ -5,6 +5,9 @@ import Blog from './Pages/Main';
 import Category from './Pages/Category';
 import CreateWhisper from './Components/Whispers/Create';
 
+// import { BrowserRouter, Route } from 'react-router-dom';
+
+
 
 
 class App extends Component {

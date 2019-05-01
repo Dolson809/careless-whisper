@@ -4,7 +4,7 @@
   "description": "\"Project 2 named careless whisper lol\"",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node server.js",
     "dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
@@ -12,6 +12,11 @@
     "heroku-postbuild": "npm run build",
     "install": "cd client && npm i",
     "seeds": "cd db && node seeds.js"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/client/"
+    ]
   },
   "repository": {
     "type": "git",
@@ -33,6 +38,8 @@
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
+    "jest": "^24.7.1",
+    "nightmare": "^3.0.2",
     "nodemon": "^1.18.11"
   }
 }

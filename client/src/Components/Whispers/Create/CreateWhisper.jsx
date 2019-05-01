@@ -41,7 +41,7 @@ class CreateWhisper extends React.Component {
     handleChange = name => event => {
       Axios.post("/api/post").then(({data})=> {
         this.setState({
-          blog: data.blogs
+          blog: data.title
       })
         });
     };
@@ -54,7 +54,7 @@ class CreateWhisper extends React.Component {
         required
         id="filled-required"
         label="Title"
-        defaultValue=""
+        placeholder="Enter Title"
         className={classes.textField}
         margin="normal"
         variant="filled"
