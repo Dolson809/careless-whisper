@@ -64,7 +64,7 @@ class FullScreenDialog extends React.Component {
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.flex}>
             </Typography>
-            <Button color="inherit" onClick={this.handleClose(this.props.handleSave)}>
+            <Button color="inherit" id="save-button" onClick={this.handleClose(this.props.handleSave)}>
               save
             </Button>
           </Toolbar>

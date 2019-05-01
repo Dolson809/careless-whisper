@@ -15,7 +15,7 @@ describe("Carelesswhisper", function () {
             .wait("#filled-required")
             .type("#filled-required", "A Careless Whisper")
             .wait(1000)
-            .select("#filled-select-category-native", "Miscellaneous")
+            .select("#filled-select-category-native", "miscellaneous")
             .wait(1000)
             .type("#filled-multiline-static", "And I'm never gonna dance again. Guilty feet have got no rhythm.")
             .wait(2000)
@@ -32,7 +32,7 @@ describe("Carelesswhisper", function () {
                 console.error("Search failed:", error);
                 done();
             });
-    }, 30000);
+    }, 50000);
 
   
 
