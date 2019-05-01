@@ -18,8 +18,8 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         defaultValue: "Personal"
       },
-      
     });
     return Blog;
   };
+
   
