@@ -90,7 +90,7 @@ class Blog extends React.Component {
          <Toolbar variant="dense" className={classes.toolbarSecondary}>
            {sections.map(section => (
            <Link to={'/category/' + section.toLowerCase()} key={section}>
-            <Button color="secondary" className={classes.button}>
+            <Button color="secondary" id={section.toLowerCase()} className={classes.button}>
               {section}
             </Button>
             </Link>
