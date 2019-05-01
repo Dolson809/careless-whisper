@@ -12,6 +12,9 @@ import styles from './Main.styles.js';
 import Dialog from '../../Components/Dialog';
 import CreateWhisper from '../../Components/Whispers/Create'
 import axios  from "axios";
+import { Link } from 'react-router-dom';
+
+
 const sections = [
   'Personal',
   'Sports',
@@ -37,7 +40,6 @@ const featuredPosts = [
 ]
 
 
-// const social = ['GitHub', 'Twitter', 'Facebook'];
 
 // function Blog(props) {
 //   const { classes } = props;
@@ -152,7 +154,6 @@ class Blog extends React.Component {
 
     active: "All"
   }
-
 componentDidMount = () => {
   axios.get('/api/saved').then(({data}) => {
     this.setState({
@@ -160,6 +161,9 @@ componentDidMount = () => {
     })
   })
 }
+handleClicks = () => {
+  console.log("I've been clicked");
+};
 
   render = () => {
     const { classes } = this.props;
@@ -174,9 +178,11 @@ componentDidMount = () => {
          </Toolbar>
          <Toolbar variant="dense" className={classes.toolbarSecondary}>
            {sections.map(section => (
-            <Button color="secondary" className={classes.button} noWrap key={section}>
+           <Link to={'/category/' + section.toLowerCase()}>
+            <Button color="secondary" className={classes.button} key={section}>
               {section}
             </Button>
+            </Link>
           ))}
         </Toolbar>
         <main>
@@ -214,7 +220,7 @@ componentDidMount = () => {
                       <Typography variant="subtitle1" paragraph>
                         {post.body}
                       </Typography>
-                      <Button color="secondary" className={classes.button}>
+                      <Button color="secondary" onClick={this.handleClicks} className={classes.button}>
                         Continue reading
                       </Button>
                     </CardContent>

@@ -12,7 +12,7 @@ import Slide from '@material-ui/core/Slide';
 import styles from './Dialog.styles.js';
 
 function Transition(props) {
-  return <Slide direction="up" {...props} />;
+  return <Slide direction="down" {...props} />;
 }
 
 class FullScreenDialog extends React.Component {
@@ -22,10 +22,13 @@ class FullScreenDialog extends React.Component {
 
   handleClickOpen = () => {
     this.setState({ open: true });
+    console.log('clicked');
   };
 
   handleClose = () => {
     this.setState({ open: false });
+    console.log('clicked');
+    
   };
 
   render() {
@@ -47,7 +50,7 @@ class FullScreenDialog extends React.Component {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.flex}>
-              Sound
+              
             </Typography>
             <Button color="inherit" onClick={this.handleClose}>
               save

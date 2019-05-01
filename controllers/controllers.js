@@ -8,9 +8,11 @@ var db = require('../models');
     db.Blog.findAll({})
         // .sort({date: -1})
         .then(blogs => {
-          if (blogs) res.json({ success: true, blogs });
-      else res.status(404).json({ success: false, error: "blogs not found." });
-          res.json(blogs)
+          if (blogs) {
+            res.json({ success: true, blogs });
+          } else {
+            res.status(404).json({ success: false, error: "blogs not found." });
+          }
         });
  });
 
