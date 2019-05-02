@@ -41,17 +41,19 @@ class Blog extends React.Component {
     const newPost = {
       title: this.state.title,
        body: this.state.body,
-       category: this.state.categort
+       category: this.state.category
     }
 
     axios.post('/api/post', newPost).then(({ data }) => {
       this.setState({
         title: '',
         body: '',
-        category: 'personal'
+        category: 'personal',
+        blog: [...this.state.blog, data]
       })
       console.log(data);
     });
+    return true;
   };
 
   handleCreateWhisperChange = (name) => (event) => {
