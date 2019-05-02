@@ -12,6 +12,7 @@ import styles from './Category.styles.js';
 import Dialog from '../../Components/Dialog';
 import CreateWhisper from '../../Components/Whispers/Create';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import axios  from "axios";
 
 
@@ -134,7 +135,7 @@ handleClicks = () => {
                         {post.title}
                       </Typography>
                       <Typography variant="subtitle1" color="textSecondary">
-                        {post.updatedAt}
+                        {moment(post.updatedAt).format('MM/YY/DD hh:mm')}
                       </Typography>
                       <Typography variant="subtitle1" paragraph>
                         {post.body}
@@ -151,7 +152,7 @@ handleClicks = () => {
       {/* Footer */}
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
-          Footer
+          
         </Typography>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
           Careless-Whisper 2019 Patent Pending
