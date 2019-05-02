@@ -48,7 +48,8 @@ class Blog extends React.Component {
         this.setState({
             title: '',
             body: '',
-            category: 'personal'
+            category: 'personal',
+            blog: [...this.state.blog, data]
         })
         console.log(data);
       });
