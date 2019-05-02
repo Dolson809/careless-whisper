@@ -21,9 +21,6 @@ describe("Carelesswhisper", function () {
             .wait(2000)
             .click("#save-button")
             .wait(3000)
-            .click("#close-button")
-            .wait(3000)
-            .refresh()
             .click("#miscellaneous")
             .wait(5000)
             .end()
@@ -36,8 +33,5 @@ describe("Carelesswhisper", function () {
                 done();
             });
     }, 50000);
-
-  
-
 });
 
