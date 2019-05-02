@@ -92,7 +92,7 @@ class Blog extends React.Component {
          <Toolbar variant="dense" className={classes.toolbarSecondary}>
            {sections.map(section => (
            <Link to={'/category/' + section.toLowerCase()} key={section}>
-            <Button color="secondary" className={classes.button}>
+            <Button color="secondary" id={section.toLowerCase()} className={classes.button}>
               {section}
             </Button>
             </Link>
@@ -144,8 +144,8 @@ class Blog extends React.Component {
         <Typography variant="h6" align="center" gutterBottom>
           Footer
         </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Careless-Whisper 2019 Patent Pending
+          <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+            Careless-Whisper 2019 Patent Pending
         </Typography>
       </footer>
       {/* End footer */}

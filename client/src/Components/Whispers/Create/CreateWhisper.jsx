@@ -8,7 +8,7 @@ import styles from './CreateWhisper.styles.js';
 const category = [
     {
         value: 'personal',
-        label: 'Personal'
+        label: 'Personal',
     },
     {
         value: 'sports',
@@ -53,6 +53,7 @@ class CreateWhisper extends React.Component {
         required
         id="filled-required"
         label="Title"
+        placeholder="Enter Title"
         className={classes.textField}
         onChange={this.props.handleChange('title')}
         value={this.props.title}
