@@ -1,0 +1,1 @@
+INSERT INTO blogs (title, body, category) VALUES ("hello", "world", "Personal");
