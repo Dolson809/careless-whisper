@@ -22,7 +22,7 @@
     "type": "git",
     "url": "git+https://github.com/Dolson809/careless-whisper.git"
   },
-  "author": "Daniel Olson, Andrew Magee, Jonathan Viera",
+  "author": "Daniel Olson, Jonathan Viera",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Dolson809/careless-whisper/issues"
