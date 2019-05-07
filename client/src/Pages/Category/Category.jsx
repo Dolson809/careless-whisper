@@ -12,6 +12,7 @@ import styles from './Category.styles.js';
 import Dialog from '../../Components/Dialog';
 import CreateWhisper from '../../Components/Whispers/Create';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import axios  from "axios";
 
 
@@ -48,7 +49,8 @@ class Blog extends React.Component {
         this.setState({
             title: '',
             body: '',
-            category: 'personal'
+            category: 'personal',
+            blog: [...this.state.blog, data]
         })
         console.log(data);
       });
@@ -97,8 +99,8 @@ handleClicks = () => {
         </Toolbar>
         <Toolbar variant="dense" className={classes.toolbarSecondary}>
           {sections.map(section => (
-            <Link to={'/category/' + section.toLowerCase()} key={section}>
-            <Button color="secondary" onClick={this.handleClicks} className={classes.button}>
+            <Link to={'/category/' + section.toLowerCase()}>
+            <Button color="secondary" id={section.toLowerCase()} onClick={this.handleClicks} className={classes.button} key={section}>
               {section}
             </Button>
             </Link>
@@ -133,7 +135,7 @@ handleClicks = () => {
                         {post.title}
                       </Typography>
                       <Typography variant="subtitle1" color="textSecondary">
-                        {post.updatedAt}
+                        {moment(post.updatedAt).format('MM/YY/DD hh:mm')}
                       </Typography>
                       <Typography variant="subtitle1" paragraph>
                         {post.body}
@@ -150,7 +152,7 @@ handleClicks = () => {
       {/* Footer */}
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
-          Footer
+          
         </Typography>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
           Careless-Whisper 2019 Patent Pending
